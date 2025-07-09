@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brezmejna sreca</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-image: url('https://i.imgur.com/fbUneHp.jpeg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-image: url('/background-title.jpg');
+            background-size: cover;
+            background-position: center;
+            color: black;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background-color: #2c3e50;
+            z-index: 1;
+        }
+
+        .poem-card {
+            position: relative;
+            width: 45%;
+            margin-bottom: 4rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+            opacity: 0;
+        }
+
+        .poem-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .poem-card::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background-color: #2c3e50;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .poem-card {
+    left: 0 !important;
+}
+
+.poem-card::after {
+    right: -60px !important;
+}
+
+
+        .poem-date {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 0.5rem;
+        }
+
+        .poem-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .poem-content {
+            white-space: pre-line;
+            line-height: 1.8;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 20px;
+            }
+
+            .poem-card {
+                width: 85%;
+                left: 50px !important;
+            }
+
+            .poem-card::after {
+                left: -40px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Brezmejna sreča</h1>
+      
+      <a href="http://modrostizivljenja.atspace.tv/Zaupno znanje zbirka pesmi.html" class="link-style">Povezava na Zbirko pesmi Zaupno znanje</a>
+    </header>
+
+    <div class="timeline-container">
+        <div class="timeline-line"></div>
+        <div id="poems-container"></div>
+    </div>
+
+    <footer>
+        <p> 2025 Brezmejna sreča</p>
+    </footer>
+
+    <script type="module">
+        import { gsap } from "https://cdn.jsdelivr.net/npm/gsap@3.12.2/+esm";
+        import { ScrollTrigger } from "https://cdn.jsdelivr.net/npm/gsap@3.12.2/ScrollTrigger.js";
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Sample poems data - replace with your own poems
+        const poems = [
+            {
+               
+              
+              id: 0,
+                date: "3 maj, 2025",
+                title: "UVODNA BESEDA",
+                content: "Pesmi avtorja, ki želi ostati anonimen, se lahko primerjajo z zakoniki življenja z jasnim sporočilom, brez abstraktnih prispodob. Namenjene so vsakemu iskrenemu bralcu, ne glede na družbeni položaj. Rime dajejo občutek lahkotnosti in odpirajo možnost uglasbitve v vseh osnovnih glasbenih zvrsteh. Izogibajo se kičastim besedam, ki bi lahko zavedle bralca na nejasni zaključek pesmi.\n\nVsaka pesem ima poleg diagnoze problema na koncu tudi zdravilo, tako, da lahko celo najtežja tematika pesmi v človeku prebudi upanje in jasno rešitev življenskih težav. Vsebine pesmi so preiskušene v praktičnem življenju in so nastale na podlagi globokih spoznanj in realiziranega znanja. Vsebina se dotika tudi znanosti v pravem smislu besede, saj je prava znanost namenjena, da bi ljudem pomagala na poti življenja pri doseganju višjih ciljev. \n\nGlavni namen pesmi je dvig zavesti človeštva, ki to v trenutnem stanju današnje civilizacije najbolj potrebuje. Z dvigom zavesti se naša lastna sreča in sreča drugih premosorazmerno povečuje. Kdor je dovolj iskren, da lahko sprejme dobronamernost vsebine teh pesmi, bo v srcu gotovo čutil veliko zadovoljstvo, izpolnjenost in notranji mir, kar pa je predpogoj za notranjo srečo. \n\nZahvala vsem, ki so pomagali pri navdihu pisanja teh pesmi, ter jih pomagali predstaviti drugim v digitalni in analogni obliki.\n\n"
+            },
+            {          
+              
+              
+              id: 1,
+                date: "3 maj, 2025",
+                title: "Očistimo srce",
+                content: "Če želimo spremeniti svet,\npotem najprej očistimo srce,\nko srce naše čisto bo,\ntakrat očiščen bo ves svet.\n\nMnogo vojn je po svetu,\nzgodovina nas uči,\nvedno iste delamo napake,\nnaše srce čisto ni.\n\nVsak otrok zasluži,\ndobro mamo in očeta,\nkot človek se rodimo redko,\nne zapravimo ta redek blagoslov.\n\nNaš planet trpi veliko bolečino,\nčloveka je prevzel pohlep,\nsamo s spoštovanjem drugih,\nta planet bo zopet zacvetel.\n\nZa prihodnost naših gre otrok,\nugasnimo pohlep srca,\nnaredimo boljši svet,\nkjer vsakdo srečno bo lahko živel.\n\nČe želimo spremeniti svet,\npotem najprej očistimo srce,\nko srce naše čisto bo,\ntakrat očiščen bo ves svet.\n\n"
+            },
+            {
+                id: 2,
+                date: "3 maj, 2025",
+                title: "Denar ne more kupit vsega",
+                content: "Ali v nas je kakšna stvar,\nki je denar ne more kupit?\nKdaj prišel bo takšen dan,\nko denar ne bo sveta vladar?\n\nKako bogat nekdo je danes,\nzlahka to ugotoviš,\nsamo prešteješ si stvari,\nki jih denar ne more kupit.\n\nDenar ne more kupit mir in srečo,\nspoštovanje drugim in ljubezen,\nprav tako družino srečno,\nz denarjem kupit se ne da.\n\nČe otrok nima nobene meje,\npotem mislil bo, da vse lahko ima,\nprav tako pohlepnemu človeku,\nje denar potrebno omejiti.\n\nČe denar porabiš v dobro drugih,\npotem ne bo več tvoj vladar,\nko zaželel boš dobro srečo drugim,\nv svojem srcu boš zaklad odkril.\n\nDanes vprašaj se globoko v sebi,\nda razjasniš si stvari,\nkaj je tisto, kar je v meni\nin denar ne more kupit?\n\n"
+            },
+            {
+                id: 3,
+                date: "10 avgust, 2020",
+                title: "Tam v daljavi, kjer ptice pojo",
+                content: "Poglej,\ntam v daljavi, kjer ptice pojo,\nkjer zemlja je čista in brez primesi -\ntam staro bom dedov seme posjal,\nnovim rodovom moči bom dajal.\n\nNa deželi, kjer smeh je še vedno doma,\nučil se bom dobrih starih modrosti,\nživel bom preprosto in čisto življenje,\nne bom se zapletal v svetovne norosti.\n\nDobrote bom svoje otroke učil,\nnajlepše bom želje drugim želel,\nživel bom življenje čist'ga srca,\nkjer družba vesela spet bo doma.\n\nŽivel bom z naravo in se učil,\nklical Gospoda v globini srca,\npel bom prelepo Sveto Ime,\nse vrnil v deželo brez rojstva in smrti.\n\n"
+            },
+            {
+                id: 4,
+                date: "5 maj, 2020",
+                title: "Ljubezen - ne pravila",
+                content: "Človek, ki sebično se obnaša,\nta ne more vodit družbo,\ndružbo lahko vodi tisti,\nki v srcu čist namen ima.\n\nDružba rabi le ljubezen,\npotem je vse na svojem mestu,\nljubezen je edina sila,\nki se dotakne drugih src.\n\nSamo ukazi, navodila,\ngrožnje in pritiski s silo,\nto se ne dotika src,\npoštenih, delovnih ljudi.\n\nCelo lenuh se bo zbudil,\nko bo videl srčne duše,\nki želijo dobro drugim,\nki pomagajo ljudem.\n\nDržava morala bi služit družbi,\nne pa le jemati zase,\nzaupanje buditi v drugih,\nv oporo biti vsem ljudem.\n\nKo ljudje v srcu bodo srečni,\nzlo bo daleč stran odšlo,\ntakrat ne bo več treba vojn,\nljubezen vsem zmehčala bo srce.\n\n"
+            },
+            {
+                id: 5,
+                date: "12 marec, 2021",
+                title: "Na strani resnice",
+                content: "Dobro jutro, dragi človek,\nkdaj zbudil se boš iz sanj?\nTem večji tvoj je položaj v družbi,\ntem večjo nosiš odgovornost.\n\nČe vzel zavetje zlobnih boš ljudi,\nsam sebi jamo boš skopal,\nzloben človek te bo iskoristil,\nna koncu brez vsega boš ostal.\n\nVedi, da mamljivo povabilo k zlu,\npreiskušnja naše je ljubezni,\nkar na začetku videti je sladko,\nna koncu spremenilo se bo v strup.\n\nPrej, ko stopil boš na stran resnice,\nprej bo posijala luč svobode,\nče sejal semena boš dobrote,\npotem srečno boš življenje žel.\n\nNikar ne misli, da pohlep, sebičnost,\nte pripeljeta v prekrasni raj,\nresnica je kot čisto olje,\nvedno bo priplavala na vrh.\n\nKdor svoje bo življenje si gradil z lažmi,\nte iste pokopale bodo ga laži,\nkdor stopil bo na stran resnice,\nv njem luč sreče posijala bo.\n\n"
+            },
+            {
+              id: 6,
+                date: "14 februar, 2021",
+                title: "Slovenska voda",
+                content: "Kot solza čista si,\nslovenska voda ti,\nnikar se ne daj,\nda odpeljejo te vkraj.\n\nNapoj si slovenskim ljudem,\nod nekdaj slovenska si,\nnaj hvaležnost ti za vse,\nv naših srcih vre.\n\nZa nič na svetu nikar,\nslovenske vode ne daj,\nti mati slovenska si,\notroci tvoji smo vsi.\n\nIz hribov tečeš ti,\nv planinah daješ moči,\nv zelenih dolinah ti,\nkraljica naša si.\n\nLe tujcu ne dajmo te,\nkje naša hvaležnost je,\nti naše življenje si,\nživljenje slovenskih ljudi.\n\n"
+            },
+            {
+              id: 7,
+                date: "11 april, 2021",
+                title: "Kar seješ, to boš žel",
+                content: "V ta svet prišli smo goli brez vsega,\npili smo mleko materinih prsi.\nzdaj pa ponos, denar nam dal je krila,\npozabili druge smo okoli nas.\n\nČe človek ne jemal bi več kot rabi,\nbilo za vse v tem svetu bi dovolj,\nvendar pa le spati in čakati,\nda drugi vse bodo nar'dili, tudi ni dovolj.\n\nSebičnost in pohlep sta zlo v našem srcu,\nnjih treba bo z ljubeznijo pregnat,\nnekomu danes bom pomagal v stiski,\nmorda pa jutri meni bo težko.\n\nZakaj vojne in prepiri so v svetu,\nzakaj eni so bogati, drugi revni,\nče samo odvržemo sebičnost,\nlepa naših bo otrok prihodnost.\n\nTa pesem ne želi ti nič vzeti,\nle eno stvar želi ti reči,\nda ne zadajaš drugim bolečino,\nda ne vzameš tisto kar ne smeš.\n\nGravitacija je zakon sveti,\nnobena stvar ne more pasti gor,\nče drugim seješ le ljubezen, srečo,\nnikoli v srcu žel ne bos nesrečo.\n\n"
+            },
+            {
+              id: 8,
+                date: "7 junij, 2021",
+                title: "Dobrota je sirota",
+                content: "Dobrota je sirota,\nto stari je pregovor,\nvendar vse, kar drugim dobrega storiš,\nobrodilo dobre bo sadove.\n\nKo dober si in čutiš,\nda nekdo te je prevaral,\ntakrat vprašaj se do koga,\nsploh je vredno biti dober?\n\nČe slabim dobro boš dajal,\npohodili bodo bisere dobrote,\ndobrote vreden je le tisti,\nki sam je vešč odlik dobrote.\n\nČe pomagati ne moreš drugim,\npotem nikar jim ne škoduj,\nkdor zloben je bo kmalu čutil v sebi,\ntesnobo in nemir.\n\nZavist bolezen tega je sveta,\nnjo treba bo z ljubeznijo pregnat,\nko razumel boš komu vredno je dobroto dat,\npotem boš sam začutil mir in srečo.\n\n"
+            },
+            {
+              id: 9,
+                date: "12 junij, 2021",
+                title: "Svoje sreče kovač",
+                content: "Vsakdo v svetu tem, svoje sreče je kovač,\nkakor boš postlal, tako boš spal;\nče dvignil boš zavest visoko,\npotem boš v srcu čutil pravo srečo.\n\nKdor grdo govori o drugih,\nda sebe bi povzdignil in druge bi potegnil dol,\ntak človek zgubil svojo bo lepoto,\nnjegovo življenje bo postalo bol.\n\nKdor misli si, da boljši je od drugih,\nin z zlobo svojo dela škodo drugim,\ntak človek si zaslužil slabo bo prihodnost,\nnjegova sreča bo postala glavobol.\n\nKdor ne more spoštovati žensk, starejših in otrok,\nta človeškega življenja vreden ni,\ntak človek moral bo zdrseti dol,\nda lahko bo zopet druge spoštoval.\n\nHinavstvo, nevoščljivost in zavist,\nto bolezni so modernega sveta,\npozdravi lahko jih le ljubezen,\nin petje svetih imen Boga.\n\n"
+            },
+            {
+              id: 10,
+                date: "7 junij, 2021",
+                title: "Kdor visoko leta, nizko pade",
+                content: "Zakaj visoko letaš, dragi človek?\nAli ne vidiš, da na koncu, nizko boš pristal?\nS tem, ko lažeš drugim, lažeš sebi,\nna koncu brez vsega boš ostal.\n\nTvoj pohlep in željo po kontroli,\ndrug pohlepnež bo končal,\nzakaj zavajanje in spuščanje ljudi,\ntvoja je edina bedna sreča?\n\nToliko lepih je stvari - vrednot v svetu,\nki lahko izpolnijo srce,\nzakaj ne dvignemo zavest visoko,\nIn zaželimo drugim srečo?\n\nNaši dedje so v pregovorih učili:\nSreča bo prišla, ko jo bomo zaželeli drugim.\n\n"
+            },
+            {
+              id: 11,
+                date: "6 junij, 2021",
+                title: "Kdor drugemu jamo koplje, sam vanjo pade",
+                content: "Sebičen človek velike načrte si kuje,\nda vse v tem svetu počasi bilo bi njegovo,\npri tem pa pozablja na druge ljudi,\nvsaj Božji sinovi in hčere smo vsi.\n\nKo človek bo drugemu jamo kopal,\nna koncu sam v njej bo pristal;\ntakšni zakoni so mati narave,\nmodrec bo delal dobro za druge ljudi.\n\nPohlep zaslepil današnji je svet,\npohlep bo pohlepu uničil načrte;\nkdor pameten je, umaknil bo se,\niz takega lažnega sveta norosti.\n\nKdo je ustvaril zemljo in vodo,\nkdo vsem nam žvljenje je dal?\nNaša sebičnost prinaša nesrečo,\nzbudimo se zdaj in zgradimo si srečo.\n\n"
+            },
+            {
+              id: 12,
+                date: "16 november, 2021",
+                title: "Če pomagati ne moreš drugim, nikomur ne škoduj",
+                content: "Kar seješ to boš žel,\nče dobro delaš drugim,\nboš v srcu srečo žel.\n\nNe delaj si utvar,\nda srečo boš imel,\nče slabo drugim boš počel.\n\nVse se vrača, vse se plača -\nstari je pregovor,\nče pomagati ne moreš drugim,\nnikomur ne škoduj.\n\nLe z dobrimi dejanji,\nprišla ljubezen bo in mir,\nne delaj slabo drugim,\nkar seješ to boš žel.\n\n"
+            },
+            {
+              id: 12,
+                date: "16 november, 2021",
+                title: "Bog samo posodil nam je zemljo",
+                content: "Nedorasli sloj se krega med seboj,\nkdor zgrabil več bo kapitala zase;\nnekoč na zemlji tej, živeli drugi so ljudje,\na danes smo prepričani, da to je naše.\n\nBog samo posodil nam je Zemljo,\nda na njej lahko živimo in dvigujemo zavest,\nvendar pa sebičnost nekaterih je premočna,\nv iluziji mislijo, da vzeli bodo kaj s seboj.\n\nPo tem življenju se rodili bomo spet,\nče bomo revni, grdi in med zlobnimi ljudmi,\nto bo kazen za dejanja zlobna,\nki storili drugim smo jih prej.Vse se vrača vse se plača,\n\ndobro ali slabo,\nprenehajmo grabiti zase,\nvse vrnilo se nam bo nazaj.\n\nČe si želimo kapital, blaginjo,\npotem pošteno služimo denar,\nsvoje srce odprimo Bogu,\nspoštujmo vse, ki so okoli nas.\n\n"
+            },
+            {
+              id: 13,
+                date: "2 november, 2021",
+                title: "Ostani dober v srcu",
+                content: "Če dober si po srcu,\npotem zaradi slabih,\nne izgubljaj vere v dobro,\nostani dober v srcu.\n\nDobro vedno se povrne,\nčeprav si včasih vzame čas,\nresnica vedno osvobaja,\ngloboko v nas nam daje moč.\n\nKdor si tega ne zasluži,\nne dajaj mu dobrote,\nsamo tisti, ki želijo drugim dobro,\nzaslužijo dobroto.\n\nDelaj dobro drugim,\nin poj Božansko pesem,\nsrce bo kmalu čisto,\nnikoli ne odnehaj.\n\n"
+            },
+            {
+              id: 14,
+                date: "22 november, 2021",
+                title: "Dvojni obraz",
+                content: "Ko bodo moja spoznanja segla v globino.\ntakrat bom odvrgel svoj dvojni obraz,\nrad svoje srce bi odprl kot knjigo,\nželim si, da v srcu slišim Tvoj glas.\n\nKo bom prenehal sebično dramo igrati,\ntakrat moja prava narava prišla bo na dan,\nnikoli ne bom več lažen do drugih,\nzavedal se bom lastnih napak.\n\nNe bom več podpiral zlobnih ljudi,\nin dovolil, da vodi me lastni pohlep,\ngradil bom lepo prihodnost naših otrok,\npomagal človeštvu, da dvigne zavest.\n\n"
+            },
+            {
+              id: 15,
+                date: "24 november, 2021",
+                title: "Znak življenja",
+                content: "Prajuha naj bi zibeljka bila življenja,\nveliki pok naj bi nastal iz nič,\nza življenje je potrebna živa sila,\nje že kdaj iz nič nastalo nekaj?\n\nŽiva in neživa narava,\nzgrajena z istih je snovi,\nvoda, kalcij, fosfor in magnezij -\nniso žive te snovi.\n\nVse, kar raste, se množi in se spreminja,\nto je znak za živo in življenje,\nčlovek ne bi smel povzročati trpljenje,\ndolžnost človeka spoštovati je življenje.\n\nKdor prebudil je zavest visoko,\nta ne bo zadajal živim bolečino,\nspoštoval bo dušo, ki je v vsakem srcu,\nz zahvalo Bogu se zahvalil bo za dar življenja.\n\n"
+            },
+            {
+              id: 16,
+                date: "24 november, 2021",
+                title: "Mi duša smo in ne telo",
+                content: "Duša ni telo in mi smo duša,\nmi duša smo in ne telo,\nče to skrivnost boš razumel,\nživljenje večno boš imel.\n\nDuša ni magnezij, kalcij, fosfor, voda,\nduša tisto je, kar drugemu ne moreš vzeti,\nzavesti drugega ne moreš imeti,\nčetudi vzameš mu telo.\n\nObleko našo menjamo vsak dan,\nko pride smrt zgodi se ista stvar,\nduša zamenja preobleko,\nodide tja, kjer ji je dar.\n\nČe dobro srečo si želis zgraditi,\nverjami v dušo, ne v telo,\nko umreš, telo povrne se v prah,\na duša pojde tja kjer je doma.\n\n"
+            },
+            {
+              id: 17,
+                date: "24 december, 2021",
+                title: "Menjava obleke",
+                content: "Smrt je menjava obleke,\nmenjava telesa,\nne sprašuj se,\nkaj po smrti v zemlji boš delal?\n\nTelo se povrne v prah,\na duša dobi -\nsvoji zavesti primerno telo,\nodvisno od dviga svoje zavesti.\n\nTo znanje prejšnjih rodov,\nizgubil sebični zahodni je svet,\nzdaj čas je, da zopet pride do nas,\nprežene naš strah po rojstvu in smrti.\n\nZato dobro deluj v človeškem življenju,\nne delaj slabega drugim ljudem,\ncelo živali, rastline so žive,\nv svojem telesu nosijo dušo.\n\nSamo človek lahko dviguje zavest -\nčloveška oblika življenja je redka.\nNe dovoli, da zdrsneš v nižje oblike življenja,\nohrani človeka dostojno zavest.\n\n"
+            },
+            {
+              id: 18,
+                date: "7 april, 2021",
+                title: "Naj drugih bo sreča, moja radost srca",
+                content: "Kot mlad sem si mislil,\nda celi se svet okrog mene vrti,\na s starostjo zgubljam svoj lažni ponos,\npočasi izgubljam bitko življenja.\n\nKdaj bom prenehal iskati napake v drugih,\nkdaj radost bo drugih zame veselje?\nRad razvil bi dobre odlike življenja,\npomagal bi svetu, da dvigne zavest.\n\nSvojo sebičnost bi rad preobrazil,\nse rešil zavisti, pohlepa srca.\nNe bi rad bil vznemirjenje drugih,\nnaj drugih sreča, moja bo radost srca.\n\nZdaj tarnam in jočem na vsakem koraku,\nzakaj nisem človeško obliko porabil,\nza služenje dobrim in tistim,\nki vsak dan slavijo Boga.\n\n"
+            },
+            {
+              id: 18,
+                date: "7 april, 2021",
+                title: "Vzel mi boš vse, da naučil se bom",
+                content: "Če znal uporabljat’ bi Tvoje imetje,\nTi dal bi mi pol Tvoj'ga sveta,\na ker sebičnost, pohlep sta me zaslepila,\nTi vzel mi boš vse, da naučil se bom.\n\nKo v Tvojo bom službo vključil stvari,\ntakrat navezanost kar naenkrat zbledi,\ntako v srcu s Teboj povezal se bom,\nnesreče nikoli več čutil ne bom.\n\nNekoč tukaj živeli so drugi ljudje,\na danes vse lastimo si zase,\nvojne, prepiri, hinavstvo, pohlep,\nspustili bodo našo zavest.\n\nEdino zdravilo je reka ljubezni,\nin Tvoje prelepo Sveto Ime,\nne pozabimo, kdo je ustvaril ta svet,\ndvignimo zopet svojo zavest.\n\n"
+            },
+            {
+              id: 19,
+                date: "7 april, 2021",
+                title: "Resnica ali krivica",
+                content: "Sem danes komu naredil krivico?\n- naj pogledam v svoje srce\n\nSem koga po krivem obsodil,\nza nekaj, kar ni narobe storil?\n\nNaj mati narava presodi,\nkdo je napako storil?\n\nNaj pota naše usode povejo,\nv katerem srcu se skriva resnica.\n\nNaj čisto srce edina bo pot,\nnaj čista vest nas spremlja povsod.\n\n"
+            },
+            {
+              id: 20,
+                date: "7 april, 2021",
+                title: "Čisti motivi",
+                content: "Kdor čiste motive v srcu ima,\nin vsakomur dobro srečo želi,\ntak človek zasluži si vso spoštovanje,\nin dvignil visoko je svojo zavest.\n\nKdor ne lasti si tujih stvari,\nspoštuje rastline, živali, ljudi;\ntak človek zasluži si vso spoštovanje,\nin dvignil visoko je svojo zavest.\n\nKdor sveto poje ime Gospoda,\nin zlo nikomur več ne želi,\ntak človek zasluži si vso spoštovanje,\ntak človek premagal je rojstvo in smrt\n\n"
+            },
+            {
+              id: 20,
+                date: "7 april, 2021",
+                title: "Spoštovanje",
+                content: "Kdor druge žali in obsoja,\nta nekoč bo grd obraz dobil,\nspoštovanje je edina pot,\nza dvig naše zavesti.\n\nKdor druge tlači dol,\nda bi povzdignil sebe,\nta pot trpljenja si tlakuje,\nnjegova sreča daleč stran beži.\n\nKar seješ, to boš žel,\nto stari je pregovor,\nprav vsak iskren starejši človek,\nlahko ga potrdi.\n\nKdor dobro v drugih vidi,\nin dobro drugemu stori,\nta sebi bo nasmeh narisal,\nta dobre letine bo žel.\n\n"
+            },
+            {
+              id: 21,
+                date: "7 april, 2021",
+                title: "Pozabljeno znanje",
+                content: "Samo oglejmo zvezde si zvečer na nebu,\npriznajmo si, da majna bitja smo,\na naš ponos bi rad presegel velikost vesolja,\nko odbije naša zadnja ura, balon ponosa počil bo.\n\nV takšnem bolnem stanju si zakrivamo oči,\nin v sebi upamo, da nam to zgodilo se ne bo,\na smrt še vedno je potrkala na vrata,\nčetudi multimilijonarji smo.\n\nZakaj tako težko je včasih rečt’ oprosti?\n- ker nas obvladuje lažni jaz,\nzakaj živimo v svetu omejene sreče?\n- ker pozabili smo, da duše smo.\n\nDokler je duša v nas, telo je živo,\nv živem in neživem isti elementi so -\nkaj potem nas dela žive?\nKateri element je to?\n\nDokaz za dušo naša je zavest,\nTe ne moremo sežgati, jo sušiti al’ utopiti,\nko iz našega odidemo telesa,\ntelo povrne se v prah.\n\n"
+            },
+            {
+              id: 22,
+                date: "7 april, 2021",
+                title: "Zašli smo",
+                content: "Le kam zašli smo dragi ljudje,\nkot da žito raste v tovarni in mleko nastane nekje.\n\nŽelimo poseči v naravo - narava pokaže zobe.\nVeliki orkani, potresi, nesreča, vse to so posledice - naše gorje.\n\nZa rojstvo otroka potrebna sta oče in mati,\nvsaj to še otroci vedo, nekateri pa ne.\n\nSnujemo nove in nove poti, kako prevarati druge ljudi,\na sami želimo najlepši bit vsi, živet na račun drugih ljudi.\n\nA pesem ta pravi, to kratka je pot - ljubezen delimo, ne vojno, nemir,\nle kakšna hvaležnost je v nas za življenje, le človek lahko razume trpljenje.\n\nZakaj bitjem čutečim smo vzeli življenje, saj tudi živali imajo otroke;\nkdor seje nasilje, bo žel bolečino, kdor daje ljubezen dobil bo darilo.\n\n"
+            },
+            {
+               id: 23,
+                date: "7 april, 2021",
+                title: "Družina - zdrava celica družbe",
+                content: "Ljudje, ki zašli so, bi radi uničili družbo,\nželijo doseči, da človek robot bi postal,\nv objemu pohlepa in sle po oblasti,\nbi radi, da cel svet bi njihov postal.\n\nKrepostna družina je zdrava celica družbe,\npravičen človek bo vedno pazil na njo,\nz namenom razbiti zdrave celice družbe,\ndanes zdrave ljudi namerno potiskajo v kot.\n\nZa rojstvo otroka potrebna sta oče in mati,\nzakoni narave nam jasno kažejo pot,\nnaši so starši in dedje nas lepih učili odlik,\ndružina je naša zdrava celica družbe.\n\nModrosti človeštva v pozabo bežijo,\nnarava nam znova in znova kaže zobe,\nzdaj čas je, da človek pozabi sebičnost\nin z bakljo čiste ljubezni dvigne svojo zavest.\n\n"
+            },
+            {
+               id: 24,
+                date: "7 april, 2021",
+                title: "Prava pot življenja",
+                content: "Prvo, kar je dobro naredit,\nje treba malo popustit,\nker ponos nam dal je krila,\nga je dobro ukrotit.\n\nČe že se prepustimo letu,\npotem srce čisto mora bit',\nker če nismo res kar govorimo,\npristali nižje bomo kot bili smo prej.\n\nTisti, ki prizna si tam, kjer je,\nta ne rabi v strahu bit',\nda bo moral pasti nižje,\nta z življenjem rasel bo naprej.\n\nTa svet narejen je za učenje,\nsam po sebi kaže nam zobe,\nče smo pametni, iskreni,\npokazal nam bo pravo pot življenja.\n\n"
+            },
+            {
+              id: 25,
+                date: "7 april, 2021",
+                title: "Dvoličnost življenja",
+                content: "Danes prijatelj,\njutri sovražnik,\nmotivi življenja,\nse križajo v nas.\n\nDvoličnost življenja,\nje naša sebičnost,\ndanes smo tukaj,\njutri smo tam.\n\nSvoje slabosti,\nželimo prikriti,\nnavzven smo odlični,\na v srcu nemir.\n\nVse delamo le,\nda pokažemo drugim,\na lastne napake,\nza njih nam ni mar.\n\nPonos nas prekril je,\nle jemljemo zase,\nnavzven smo svetniki,\nnam za druge ni mar.\n\nČe le bi priznali,\nsvoje napake,\nto majhno dejanje,\nzmehčalo bi naše srce\n\nBožanska ljubezen,\nje skrita v nas,\ns svetim imenom jo prebudimo,\nodkril se nam bo skriti zaklad.\n\n"
+            },
+            {
+              id: 26,
+                date: "7 april, 2021",
+                title: "Iskra življenja",
+                content: "Želijo ustvarit iskro življenja,\na iskra življenja ni naše telo.\n\nZakaj naše telo je videti živo,\na kamen v roki ne daje znakov življenja?\n\nKo iskra življenja vstopi v naše telo,\ntakrat oživi materialno telo.\n\nV srcu našem je iskra življenja,\npreko krvi se širi zavest.\n\nMrtvo naravo in živo, sestavljajo iste snovi,\na iskra življenja ni iz snovi.\n\nIskre življenja ne moreš zlomiti,\nniti sežgati in ne utopiti.\n\nDuša je večna in širi svojo zavest;\nzavest je dokaz, da smo iskra življenja.\n\n"
+            },
+            {
+              id: 27,
+                date: "7 april, 2021",
+                title: "Spoštujmo iskro življenja",
+                content: "Dovolite, da vprašam, odrasli ljudje,\nzakaj je toliko nasilja povsod?\nTelevizija predvaja nasilje,\nzakaj ne uči ljubezni, dobrote?\n\nPojdimo v naravo, na njive nazaj,\nda lahko preživel človeški bo rod,\npodajmo si roke, pomagajmo si,\nle v slogi je moč in notranja sreča.\n\nKo le bi človeštvo zavedalo se,\nkako je redka človeška oblika življenja...\nLe človek lahko razume zakone narave,\nživali, rastline ne morejo dvigniti svojo zavest.\n\nNikar ne škodujmo drugim ljudem,\nspoštujmo iskro življenja v vseh,\nko dvignili bomo našo zavest,\nse cel planet spremenil v lepši bo svet.\n\n"
+            },
+            {
+              id: 28,
+                date: "7 april, 2021",
+                title: "Nazaj na zemljo",
+                content: "Posadimo seme v zemljo,\nda vzklije žito zdravo,\nbrez škropiv in vseh dodatkov,\nnaj mu zemlja, mati bo.\n\nNe igrajmo se z naravo,\nmočni so zakoni njeni,\nprebudimo naše znanje,\nskupaj dvignimo zavest.\n\nRana ura, zlata ura,\npesem naj nam vodi pot,\nsmeh, veselje in pa radost,\nnaj nas spremljajo povsod.\n\nLe zakaj bi želi žalost,\nko pa sreča je povsod,\nle spoštujmo mati Zemljo,\nona daje nam vsakdanji kruh.\n\n"
+            },
+            {
+              id: 29,
+                date: "7 april, 2021",
+                title: "Bitka dobrega in zla",
+                content: "Vsakdo je prišel z razlogom,\nv ta sebični smrtni svet,\nv vsakemu od nas je bitka,\ndobrega in zla.\n\nKakšna naša so dejanja?\nKam želimo si po tem življenju?\nTam, ko naša se zavest obrne,\ntakšna naša bo prihodnost.\n\nKdor zavestno dobro dela drugim,\nzlobo pa odganja daleč stran,\nta v srcu si gradi kraljestvo,\nnesreče žel ne bo nikdar.\n\nČlovek redko ’ma priložnost,\nda zavest lahko si dvigne,\nin pomaga drugim v stiski,\nter premaga zlo v nas.\n\n"
+            },
+            {
+              id: 30,
+                date: "7 april, 2021",
+                title: "Reka ljubezni",
+                content: "Lahko okoli prenašaš druge ljudi,\na narave nikoli ukanil ne boš,\nvsaka laž ima kratke noge,\nna palici vsaki konca sta dva.\n\nNaši dedje učili so modre stvari,\nso mlajšim rodovom znali postaviti meje,\na v nas zagorela je zloba, pohlep,\nto je požar, ki nas pelje v pogubo.\n\nZakaj ne odvržemo teh močno gorljivih stvari,\nin pustimo, da nas preplavi reka ljubezni,\nnamesto, da drugim delamo zlo,\nraje srčno pomagajmo drugim.\n\nKer včasih kazen ne pride takoj,\nzato v zmoti ne vidimo skritih zakonov narave,\na zgodovina vse nas jasno uči,\nda pot zlobe nikoli ne vodi do sreče.\n\nVsake vojne je konec, ko po velikem trpljenju,človeštvo dvigne zavest,\nče bomo drugim ponovno želeli ljubezen in srečo,\ntakrat vse vojne v trenutku izginile bodo -\ntakrat nas nezkončna preplavi reka ljubezni.\n\n"
+            },
+            {
+              id: 31,
+                date: "7 april, 2021",
+                title: "Brezmejna sreča",
+                content: "Edini razlog je za strah -\nzadati drugim bolečino,\nkarkoli zdaj počnemo,\nsadove obrodilo bo v prihodnje.\n\nČe nimamo zavest visoko,\npotem zdaj čas je za spremembo,\npotem, ko razumeli bomo višji cilj življenja,\nbrezmejno srečo bomo ujeli v nas.\n\nEdini razlog je za strah -\nzadati drugim bolečino,\nče nimamo zavest visoko,\npotem zdaj čas je za spremembo.\n\nKarkoli zdaj počnemo,\nSadove obrodilo bo v prihodnje,\npotem, ko razumeli bomo višji cilj življenja,\nbrezmejno srečo bomo ujeli v nas.\n\n"
+            },
+            {
+              id: 32,
+                date: "7 april, 2021",
+                title: "Ogledalo srca",
+                content: "Kdor prizna si svoje napake,\nin rad odpravil bi jih,\ntak človek z božanako naravo,\nnosi ljubezen s seboj.\n\nČe rad bi napake prekril,\nz debelo prekrivno nalepko,\npotem ogledalo srca,\nostalo bo prašno za vedno.\n\nV tej dobi je morje napak,\nnihče ga preplaval ne bo,\nkot majhna stopinja postane,\nče pojemo Sveto Ime.\n\nV imenu božanskem se skriva zaklad,\nne išči drugod, ker vse bo zaman;\nljubezen pregnala bo zlobo v svetu,\nzačnimo v naši globini srca.\n\n"
+            },
+            {
+              id: 33,
+                date: "7 april, 2021",
+                title: "Novi svet",
+                content: "Kam izginjajo lepe odlike,\nkje so prijazni obrazi božanskih ljudi,\nkdaj bo človek zopet človeku prijatelj,\nkdaj si bo lastne napake priznal?\n\nNičesar ne bomo odnesli s seboj,\nle svojo visoko božansko zavest,\nv nas se skriva iskra čiste ljubezni,\nodkrijmo jo zdaj, ko je še čas.\n\nV mrtvi kotlini pohlepa, zavisti,\ndušimo se v krogu rojstva in smrti,\nstopimo na sonce čiste zavesti,\nzgradimo nov svet božanske zavesti.\n\n"
+            },
+            {
+              id: 34,
+                date: "7 april, 2021",
+                title: "Skriti zaklad",
+                content: "Ne joči, če danes boš kaj izgubil,\nne skači v zrak, če kaj boš dobil,\nvse, kar danes dobil boš v roke,\nnameni v službo dobrih ljudi.\n\nTelo se rodi in umre,\nvsakdo za sabo pustil bo vse,\nduša pa večno živi,\nin spreminja svojo zavest.\n\nPrebudimo svojo zavest,\nne pustimo, da zloba premaga ves svet!\nV čisti ljubezni je sreča,\nodkrijmo naš zaklad - skriti zaklad !\n\n"
+            },
+            {
+              id: 35,
+                date: "7 april, 2021",
+                title: "Zdravilo za vse bolezni",
+                content: "Bolezen zavisti prežema ves svet;\nče bitju drugemu jamo koplješ,\nkmalu zgodi se, da sam vanjo padeš,\nto je zakaj prišli smo se zdravit v ta svet.\n\nZdaj čas je, da misli, besede, dejanja,\nprežame višja zavest,\nsveto ime je zdravilo bolezni,\nčista ljubezen vstopila bo v naše srce.\n\nDanes prenehal bom pisati pesmi,\nker čas je, da lastno ozdravim zavist!\n\n"
+            },
+            {
+              id: 36,
+                date: "7 april, 2021",
+                title: "Sreča v srcu",
+                content: "Naj bo vsakdo srečen,\nnaj bo srečen v srcu,\nnaj ljubezen svet prežame,\nnaj sovraštvo se umakne daleč stran.\n\nZaželimo večjo srečo drugim,\nkot bi jo želeli sami sebi,\nnaj dobrota svet prežame,\nnaj se zlo umakne daleč stran.\n\nSrečen v srcu bo postal le tisti,\nki bo drugim srečo zaželel.\nKdor delil bo srečo drugim,\nsam v srcu srečen bo.\n\n"
+            },
+            {
+              id: 99,
+                date: "July 30, 2021",
+                title: "Slovenija - moja dežela",
+                content: "Kdor hodi po poti resnice,\ntemu blaginja ni vse,\nsreča resnice je večja,\nkot vsi so zlatniki sveta.\n\nSkromnost, poštenje, sočutnost,\nokrasi so naš’ga srca,\nkdor ljubi deželo slovensko,\nta čisto srce še ima.\n\nOd nekdaj duša slovenska,\nkot solza je čista bla’,\nčisti potoki in gore,\nsimboli so naš'ga sveta.\n\nNikar ne prodajajmo tujcu,\nprelepe dežele slovenske,\nohranimo jezik, navade,\nin lepe odlike srca.\n\n"
+            }
+        ];
+
+        // Function to create poem cards
+        function createPoemCards() {
+            const poemsContainer = document.getElementById('poems-container');
+            
+            poems.forEach(poem => {
+                const poemCard = document.createElement('div');
+                poemCard.className = 'poem-card';
+                
+                poemCard.innerHTML = 
+                    `<div class="poem-date">${poem.date}</div>
+                    <h2 class="poem-title">${poem.title}</h2>
+                    <div class="poem-content">${poem.content}</div>`;
+                
+                poemsContainer.appendChild(poemCard);
+            });
+        }
+
+        // Function to animate poem cards
+        function animatePoemCards() {
+            gsap.utils.toArray('.poem-card').forEach((card, i) => {
+                gsap.fromTo(card, 
+                    { opacity: 0, y: 50 }, 
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 80%",
+                            end: "top 50%",
+                            toggleActions: "play none none none"
+                        }
+                    }
+                );
+            });
+        }
+
+        // Initialize the page
+        function i() {
+            createPoemCards();
+            animatePoemCards();
+        }
+
+        // Run initialization when DOM is loaded
+        document.addEventListener('DOMContentLoaded', i);
+    </script>
+</body>
+</html>
